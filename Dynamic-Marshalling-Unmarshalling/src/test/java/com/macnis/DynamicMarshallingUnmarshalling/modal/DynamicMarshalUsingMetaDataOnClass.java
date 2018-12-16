@@ -25,6 +25,7 @@ public class DynamicMarshalUsingMetaDataOnClass {
         JAXBContext jaxbContext = JAXBContextFactory.createContext(new Class[]{Person.class}, null);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(MarshallerProperties.OBJECT_GRAPH, "personWithoutNumberField");
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(person, System.out);
 
     }

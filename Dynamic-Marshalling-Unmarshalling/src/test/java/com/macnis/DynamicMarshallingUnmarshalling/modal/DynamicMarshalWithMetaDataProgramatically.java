@@ -20,6 +20,7 @@ public class DynamicMarshalWithMetaDataProgramatically {
         phoneNumber.setLandline(000001211);
         phoneNumber.setMobile(999999999);
         phoneNumber.setOffice(01010101010);
+        person.setPhoneNumber(phoneNumber);
 
         JAXBContext jaxbContext = JAXBContextFactory.createContext(new Class[]{Person.class}, null);
         Marshaller marshaller = jaxbContext.createMarshaller();
@@ -27,10 +28,11 @@ public class DynamicMarshalWithMetaDataProgramatically {
         personWithoutPhoneNumber.addAttributeNodes("fname");
         personWithoutPhoneNumber.addAttributeNodes("lname");
         personWithoutPhoneNumber.addAttributeNodes("address");
-        Subgraph withoutOffice = personWithoutPhoneNumber.addSubgraph("withoutOffice");
+        Subgraph withoutOffice = personWithoutPhoneNumber.addSubgraph("phoneNumber");
         withoutOffice.addAttributeNodes("landline");
         withoutOffice.addAttributeNodes("mobile");
         marshaller.setProperty(MarshallerProperties.OBJECT_GRAPH, personWithoutPhoneNumber);
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(person, System.out);
     }
 }

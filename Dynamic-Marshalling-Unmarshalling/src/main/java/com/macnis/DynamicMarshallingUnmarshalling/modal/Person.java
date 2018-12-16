@@ -7,6 +7,7 @@ import org.eclipse.persistence.oxm.annotations.XmlNamedSubgraph;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlNamedObjectGraph(
@@ -34,6 +35,7 @@ public class Person {
     String fname;
     String lname;
     int age;
+    @XmlElement(name="phoneNumber")
     PhoneNumber phoneNumber;
     String address;
 
